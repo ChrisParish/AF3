@@ -15,6 +15,23 @@
 
 #define MOTOR_I_14HS10_0404S_04A 240
 #define MOTOR_I_14HS17_0504S_05A 400
+#define MOTOR_I_1701HSM140AE_08A 800
+
+#define FOCUSER_X10
+
+#ifdef FOCUSER_X10
+    #define MOTOR_SPEED_VERY_SLOW 48000
+    #define MOTOR_SPEED_SLOW 24000
+    #define MOTOR_SPEED_MEDIUM 8000
+    #define MOTOR_SPEED_FAST 4000
+    #define MOTOR_SPEED_VERY_FAST 1000
+#else
+    #define MOTOR_SPEED_VERY_SLOW 96000
+    #define MOTOR_SPEED_SLOW 48000
+    #define MOTOR_SPEED_MEDIUM 24000
+    #define MOTOR_SPEED_FAST 8000
+    #define MOTOR_SPEED_VERY_FAST 4000
+#endif
 
 class Peripherals_AF3; //forwared declaration
 class Motor_AF3

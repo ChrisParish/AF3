@@ -2,5 +2,5 @@
 
 #pragma once
 
-#define FW_NAME "DeepSkyDad.AF3"
-#define FW_VERSION "1.0.5"
+#define FW_NAME "DeepSkyDad.AF3.CP"
+#define FW_VERSION "1.0.6"

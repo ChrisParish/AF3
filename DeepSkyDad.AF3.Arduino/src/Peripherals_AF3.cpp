@@ -85,7 +85,7 @@ void Peripherals_AF3::autoDiscovery()
         }
     }
 
-    if (!_motor->isMoving() && !ms - lastTSAutoDiscovery > 5000 || lastTSAutoDiscovery == 0)
+    if ((!_motor->isMoving() && !ms - lastTSAutoDiscovery > 5000) || lastTSAutoDiscovery == 0)
     {
         lastTSAutoDiscovery = ms;
 

@@ -9,19 +9,19 @@ void Motor_AF3::_startMotor() {
     switch (_eeprom->getSpeedMode())
     {
         case 1:
-            _motorMoveDelay = 96000;
+            _motorMoveDelay = MOTOR_SPEED_VERY_SLOW;
             break;
         case 2:
-            _motorMoveDelay = 48000;
+            _motorMoveDelay = MOTOR_SPEED_SLOW;
             break;
         case 3:
-            _motorMoveDelay = 24000;
+            _motorMoveDelay = MOTOR_SPEED_MEDIUM;
             break;
         case 4:
-            _motorMoveDelay = 8000;
+            _motorMoveDelay = MOTOR_SPEED_FAST;
             break;
         case 5:
-            _motorMoveDelay = 4000;
+            _motorMoveDelay = MOTOR_SPEED_VERY_FAST;
             break;
     }
 
@@ -64,10 +64,12 @@ void Motor_AF3::_applyMotorCurrent() {
     } else if(d5 == LOW && d6 == HIGH) {
         _motorI = MOTOR_I_14HS17_0504S_05A;
     } else if(d5 == HIGH && d6 == LOW) {
-        //TODO
+        _motorI = MOTOR_I_1701HSM140AE_08A;
     } else if(d5 == LOW && d6 == LOW) {
         //TODO
     }
+
+    
 
     int mA = _motorI*(((float)_eeprom->getMotorIMoveMultiplier())/100.0);
     float multiplier = ((float)_eeprom->getMotorIHoldMultiplier())/100.0;
@@ -274,6 +276,10 @@ void Motor_AF3::debug() {
     Serial.println(_driver.DRV_STATUS());
     Serial.print("TMC CRC error: ");
     Serial.println(_driver.CRCerror);
+    Serial.print("Motor Select Pin 5");
+    Serial.println(digitalRead(MOTOR_SELECT_PIN_D5) == HIGH ? " HIGH" : " LOW");
+    Serial.print("Motor Select Pin 6");
+    Serial.println(digitalRead(MOTOR_SELECT_PIN_D6) == HIGH ? " HIGH" : " LOW");
 }
 
 void Motor_AF3::legacyTest() {
